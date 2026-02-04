@@ -2,7 +2,7 @@ import xmlrpc.client
 
 url ="http://192.168.56.10:8069"
 db ="entreprise_test"
-username ="admin"
+username ="admin@entreprise.local"
 password ="admin"
 
 common = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/common")
