@@ -1,0 +1,66 @@
+import xmlrpc.client
+
+url ="http://192.168.56.10:8069"
+db ="entreprise_test"
+username ="admin"
+password ="admin"
+
+common = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/common")
+uid = common.authenticate(db, username, password, {})
+
+models = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/object")
+
+# ID du projet "Support"
+project_id = models.execute_kw(
+    db, uid, password,
+'project.project','search',
+    [[['name','=','Support']]],
+    {'limit':1}
+)[0]
+
+# Création d'une tâche support
+models.execute_kw(
+    db, uid, password,
+'project.task','create',
+    [{
+'name':'bras robot bloqué',
+'description':'Le bras robot de la ligne 2 ne répond plus.',
+'project_id': project_id
+    }]
+)
+
+print("Demande de support envoyée")
+
+import xmlrpc.client
+
+url ="http://192.168.56.10:8069"
+db ="entreprise_test"
+username ="admin"
+password ="admin"
+
+common = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/common")
+uid = common.authenticate(db, username, password, {})
+
+models = xmlrpc.client.ServerProxy(f"{url}/xmlrpc/2/object")
+
+# ID du projet "Support"
+project_id = models.execute_kw(
+    db, uid, password,
+'project.project','search',
+    [[['name','=','Support']]],
+    {'limit':1}
+)[0]
+
+# Création d'une tâche support
+models.execute_kw(
+    db, uid, password,
+'project.task','create',
+    [{
+'name':'bras robot bloqué',
+'description':'Le bras robot de la ligne 2 ne répond plus.',
+'project_id': project_id
+    }]
+)
+
+print("Demande de support envoyée")
+
